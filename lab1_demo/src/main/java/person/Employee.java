@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 class  Employee {
 
     private @Id @GeneratedValue Long id;
+    private Long uid;
     private String name;
     private String gender;
 
@@ -25,7 +26,15 @@ class  Employee {
         this.age = age;
     }
 
-
+    public  String getName(){
+        return this.name;
+    }
+    public  String getGender(){
+        return this.gender;
+    }
+    public  Long getAge(){
+        return this.age;
+    }
     public void setId(Long id) {
         this.id = id;
     }
