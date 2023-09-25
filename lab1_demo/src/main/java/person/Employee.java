@@ -50,7 +50,7 @@ class  Employee {
             return false;
         Employee employee = (Employee) o;
         return Objects.equals(this.id, employee.id) && Objects.equals(this.name, employee.name)
-                && Objects.equals(this.gender, employee.gender) && Objects.equals(this.age, employee.age;
+                && Objects.equals(this.gender, employee.gender) && Objects.equals(this.age, employee.age);
     }
 
     @Override
