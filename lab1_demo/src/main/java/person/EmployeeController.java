@@ -22,19 +22,20 @@ class EmployeeController {
 
     // Aggregate root
     // tag::get-aggregate-root[]
-    @GetMapping("/api/v1/user")
+    // 查找全体用户
+    @GetMapping("/api/v1/user/all")
     List<Employee> all() {
         return repository.findAll();
     }
     // end::get-aggregate-root[]
-
+    // 插入用户
     @PostMapping("/api/v1/user")
     Employee newEmployee(@RequestBody Employee newEmployee) {
         return repository.save(newEmployee);
     }
 
     // Single item
-
+    //查找具体某一个用户
     @GetMapping("/api/v1/user/{id}")
     Employee one(@PathVariable Long id) {
 
@@ -42,6 +43,7 @@ class EmployeeController {
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
     }
 
+    //修改用户信息
     @PutMapping("/api/v1/user/{id}")
     Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
 
@@ -57,7 +59,7 @@ class EmployeeController {
                     return repository.save(newEmployee);
                 });
     }
-
+    //删除用户信息
     @DeleteMapping("/api/v1/user/{id}")
     void deleteEmployee(@PathVariable Long id) {
         repository.deleteById(id);
