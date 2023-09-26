@@ -61,7 +61,12 @@ curl -X DELETE localhost:8080/api/v1/user/{id}
 * Connection #0 to host 127.0.0.1 left intact
   Could not find employee 99%
 ```
+### 实验要求
+[实验要求链接](https://openmsg.yuque.com/krcw6r/ox372z/dphk2drit7ug3wgx?singleDoc#)
 
+### TODO
+- [x] V1版本要求(实验文档要求)
+- [ ] V2版本要求(9.25课上新增内容)
 ### 项目文档
 [项目文档链接](
 https://docs.qq.com/doc/DYUlzaXRselFTeFhV?scene=0265cf9576c3e8ad9daf92b23eVnq1)
