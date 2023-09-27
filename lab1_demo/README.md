@@ -48,6 +48,7 @@ localhost:8080/show
 # 添加学生
 localhost:8080/add
 #查找、更新、删除在同一个页面
+注意由于不是持久化的数据库，重新启动项目后添加的数据将会清除
 localhost:8080/search
 ```
 
