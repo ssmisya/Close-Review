@@ -41,6 +41,16 @@ curl -X PUT localhost:8080/api/v1/user/{id} -H 'Content-type:application/json' -
 curl -X DELETE localhost:8080/api/v1/user/{id}
 ```
 
+### 前端页面访问
+```bash
+#显示所有学生：
+localhost:8080/show
+# 添加学生
+localhost:8080/add
+#查找、更新、删除在同一个页面
+localhost:8080/search
+```
+
 
 ```bash
 #若查找不到返回404及提示消息：
