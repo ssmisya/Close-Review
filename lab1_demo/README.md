@@ -82,6 +82,13 @@ localhost:8080/search
 [项目文档链接](
 https://docs.qq.com/doc/DYUlzaXRselFTeFhV?scene=0265cf9576c3e8ad9daf92b23eVnq1)
 ![avatar](../img/LAB1_doc.png)
+### 测试结果
+![avatar](../img/test1.png)
+![avatar](../img/test2.png)
+![avatar](../img/test3.png)
+![avatar](../img/test4.png)
+![avatar](../img/test5.png)
+
 
 
 
