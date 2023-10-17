@@ -1,4 +1,4 @@
-## LAB1
+## LAB1&LAB2
 
 ### Requirement
 #### 使用：
