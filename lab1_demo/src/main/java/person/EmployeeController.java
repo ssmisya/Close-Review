@@ -1,6 +1,7 @@
 package person;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,16 +25,33 @@ class EmployeeController {
     // tag::get-aggregate-root[]
     // 查找全体用户
     @GetMapping("/api/v1/user/all")
-    List<Employee> all() {
-        return repository.findAll();
-    }
+    List<Employee> all(@RequestBody Employee newEmployee) {
 
+        boolean hasSuperPower = newEmployee.getSuperPower();
+        Long uid  = newEmployee.getId();
+        if(hasSuperPower)
+        {
+            return repository.findAll();
+        }
+        else
+        {
+            throw new EmployeeNoPowerException(uid);
+        }
+    }
     // end::get-aggregate-root[]
     // 插入用户
     @PostMapping("/api/v1/user")
     Employee newEmployee(@RequestBody Employee newEmployee) {
-
-        return repository.save(newEmployee);
+        boolean hasSuperPower = newEmployee.getSuperPower();
+        Long uid  = newEmployee.getId();
+        if(hasSuperPower)
+        {
+            return repository.save(newEmployee);
+        }
+        else
+        {
+            throw new EmployeeNoPowerException(uid);
+        }
     }
 
     // Single item
@@ -61,10 +79,18 @@ class EmployeeController {
                     return repository.save(newEmployee);
                 });
     }
-
     //删除用户信息
     @DeleteMapping("/api/v1/user/{id}")
     void deleteEmployee(@PathVariable Long id) {
-        repository.deleteById(id);
+        Employee newEmployee = repository.findById(id);
+        boolean hasSuperPower = newEmployee.getSuperPower();
+        if(hasSuperPower)
+        {
+            repository.deleteById(id);
+        }
+       else
+        {
+            throw new EmployeeNoPowerException(id);
+        }
     }
 }
