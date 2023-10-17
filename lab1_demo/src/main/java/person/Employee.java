@@ -9,20 +9,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Employee {
+class  Employee {
 
     private @Id @GeneratedValue Long uid;
     private String name;
 
     private String gender;
 
-    private boolean hasSuperPower;
 
     private Long age;
 
     Employee() {}
 
     Employee(String name, String gender,Long age) {
+
         this.name = name;
         this.gender = gender;
         this.age = age;
@@ -45,10 +45,6 @@ public class Employee {
         return this.age;
     }
 
-    public boolean getSuperPower()
-    {
-        return this.hasSuperPower;
-    }
 
     public void setId(Long id) {
         this.uid = id;

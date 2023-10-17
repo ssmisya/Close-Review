@@ -14,19 +14,12 @@ class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(EmployeeRepository repository) {
 
-//        return args -> {
-//            log.info("Preloading " + repository.save(new Employee("Bilbo Baggins", "M",23L)));
-//            log.info("Preloading " + repository.save(new Employee("Frodo Baggins", "F",21L)));
-//            log.info("Preloading " + repository.save(new Employee("Wenxuan", "F",21L)));
-//            log.info("Preloading " + repository.save(new Employee("Xiaoming", "M",26L)));
-//            log.info("Preloading " + repository.save(new Employee("Cristiano Ronaldo", "M",38L)));
-//        };
         return args -> {
-            log.info("Preloading " + repository.save(new SuperPerson("Bilbo Baggins", "M",23L)));
-            log.info("Preloading " + repository.save(new SuperPerson("Frodo Baggins", "F",21L)));
-            log.info("Preloading " + repository.save(new CommonPerson("Wenxuan", "F",21L)));
-            log.info("Preloading " + repository.save(new CommonPerson("Xiaoming", "M",26L)));
-            log.info("Preloading " + repository.save(new CommonPerson("Cristiano Ronaldo", "M",38L)));
+            log.info("Preloading " + repository.save(new Employee("Bilbo Baggins", "M",23L)));
+            log.info("Preloading " + repository.save(new Employee("Frodo Baggins", "F",21L)));
+            log.info("Preloading " + repository.save(new Employee("Wenxuan", "F",21L)));
+            log.info("Preloading " + repository.save(new Employee("Xiaoming", "M",26L)));
+            log.info("Preloading " + repository.save(new Employee("Cristiano Ronaldo", "M",38L)));
         };
     }
 }
