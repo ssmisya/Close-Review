@@ -11,7 +11,8 @@ import java.util.Optional;
  *
  * @author star
  */
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface
+UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUserName(String userName);
 
