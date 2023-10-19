@@ -105,4 +105,10 @@ public class User {
     public void setRegion(String region){
         this.region = region;
     }
+
+    @Override
+    public String toString(){
+        return "id="+this.getId()+" userName="+this.getUserName()+" password="+this.getPassword()
+                +" Email="+this.getEmail()+" Organization="+this.getOrganization()+" Region="+this.getRegion();
+    }
 }

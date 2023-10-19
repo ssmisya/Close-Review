@@ -85,7 +85,7 @@ public class SecurityConfiguration {
 //        return new InMemoryUserDetailsManager(user);
 //    }
    // @formatter:on
-    @Bean
+    @Bean("H2Datasource")
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
