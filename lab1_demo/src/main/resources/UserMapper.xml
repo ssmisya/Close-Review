@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springsecurity.Repository.UserMapper">
+    <select id="loadUserByUsername" resultType="com.example.springsecurity.Entity.User">
+        select * from user_info where user_name=#{user_name}
+    </select>
+    <select id="getUserRolesByUid" resultType="com.example.springsecurity.Entity.Role">
+        select * from user_role where user_name = #{id}
+    </select>
+    <insert id="addUserByUsername" parameterType="com.example.springsecurity.Entity.UserRegister">
+        insert into user(username,password,enabled,locked) values(#{username},#{password},#{enabled},#{locked})
+    </insert>
+    <select id="getAllRole" resultType="com.example.springsecurity.Entity.Role">
+        select * from role
+    </select>
+    <insert id="addRole">
+        insert into user_role(uid,rid) values(#{uid},#{rid})
+    </insert>
+</mapper>
