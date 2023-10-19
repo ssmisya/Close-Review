@@ -19,23 +19,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name", columnDefinition = "varchar(30)", nullable = false, unique = true)
+    @Column(name = "user_name", columnDefinition = "varchar(100)", nullable = false, unique = true)
     private String userName;
 
-    @Column(name = "nick_name", columnDefinition = "varchar(30)")
+    @Column(name = "nick_name", columnDefinition = "varchar(100)")
     private String nickName;
 
-    @Column(name = "password", columnDefinition = "varchar(68)", nullable = false)
+    @Column(name = "password", columnDefinition = "varchar(100)", nullable = false)
     private String password;
 
-    @Column(name = "email", columnDefinition = "varchar(40)", nullable = false)
+    @Column(name = "email", columnDefinition = "varchar(100)", nullable = false)
     private String email;
 
-    @Column(name = "organization", columnDefinition = "varchar(80)", nullable = false)
+    @Column(name = "organization", columnDefinition = "varchar(100)", nullable = false)
     private String organization;
 
-    @Column(name = "region", columnDefinition = "varchar(80)", nullable = false)
+    @Column(name = "region", columnDefinition = "varchar(100)", nullable = false)
     private String region;
+
+    @Column(name = "enabled", columnDefinition = "BOOL",nullable = false)
+    private boolean enabled;
 
     public User(String userName, String nickName, String password, String email, String organization, String region){
         super();
@@ -45,6 +48,18 @@ public class User {
         this.email = email;
         this.organization = organization;
         this.region = region;
+        this.enabled = true;
+    }
+
+    public User(String userName, String nickName, String password, String email, String organization, String region,boolean enabled){
+        super();
+        this.userName = userName;
+        this.nickName = nickName;
+        this.password = password;
+        this.email = email;
+        this.organization = organization;
+        this.region = region;
+        this.enabled = enabled;
     }
 
     public User() {
@@ -106,9 +121,16 @@ public class User {
         this.region = region;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString(){
-        return "id="+this.getId()+" userName="+this.getUserName()+" password="+this.getPassword()
+        return "id="+this.getId()+" userName="+this.getUserName()+" nickName="+this.getNickName()+" password="+this.getPassword()
                 +" Email="+this.getEmail()+" Organization="+this.getOrganization()+" Region="+this.getRegion();
     }
 }

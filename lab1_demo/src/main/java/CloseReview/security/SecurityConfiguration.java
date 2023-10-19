@@ -19,8 +19,10 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -29,6 +31,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -60,8 +63,11 @@ public class SecurityConfiguration {
 
         http
                 .authorizeRequests((authorize) -> authorize
-                        //这里想要放行某个访问，当有2个servelet时只能用这种方法，个死妈开发者整一堆表示方法，新版本中全都用不了了
+                        //这里想要放行某个访问，当有2个servelet时只能用这种方法，SB开发者整一堆表示方法，新版本中全都用不了了
                         .requestMatchers(new AntPathRequestMatcher("/h2/**")).permitAll()
+                        //放行某个角色对某页面的访问
+                        .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/db/**")).access("hasRole('ADMIN') and hasRole('DBA')")
 //                        .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -69,42 +75,44 @@ public class SecurityConfiguration {
                         .loginPage("/login")
                         .permitAll()
                 );
+        http
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/index")
+//                .logoutSuccessHandler(logoutSuccessHandler)
+                .invalidateHttpSession(true);
+//                .addLogoutHandler(logoutHandler)
+//                .deleteCookies(cookieNamesToClear)
         // @formatter:on
         return http.build();
     }
 
-
-    // @formatter:off
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user = User.withDefaultPasswordEncoder()
-//                .username("user")
-//                .password("password")
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
-   // @formatter:on
     @Bean("H2Datasource")
     public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
-                .build();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setUrl("jdbc:h2:file:./lab1_demo/db/h2_db_file");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("");
+        return dataSource;
     }
 
     @Bean
     public UserDetailsManager users(DataSource dataSource) {
         UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
+                .username("dev")
                 .password("password")
-                .roles("USER")
+                .roles("Administer")
                 .build();
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-        users.createUser(user);
+        JdbcUserDetailsManager users = new JdbcUserDetailsManager();
+        users.setDataSource(dataSource);
+        users.setUsersByUsernameQuery("SELECT user_name AS username,password,enabled FROM user_info where user_name = ?");
+        users.setAuthoritiesByUsernameQuery("SELECT user_name AS username,role AS authority FROM user_role where user_name=?");
+        users.setCreateUserSql("INSERT INTO user_info (user_name, password ,enabled, email, organization, region) VALUES(?,?,?,'null','null','null');");
+        users.setCreateAuthoritySql("INSERT INTO user_role (user_name,role) VALUES (?,?)");
+//        users.createUser(user);
         return users;
     }
-
 }
 
 

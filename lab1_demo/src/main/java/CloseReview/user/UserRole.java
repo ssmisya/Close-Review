@@ -17,10 +17,10 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name", columnDefinition = "varchar(30)" , nullable = false)
+    @Column(name = "user_name", columnDefinition = "varchar(100)" , nullable = false)
     private String userName;
 
-    @Column(name = "role",  columnDefinition = "varchar(20)" , length = 20, nullable = false)
+    @Column(name = "role",  columnDefinition = "varchar(100)" , length = 20, nullable = false)
     private String role;
 
     public UserRole(String userName, String role){
