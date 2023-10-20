@@ -11,7 +11,6 @@ import jakarta.persistence.*;
 @Table(name = "user_role")
 public class UserRole {
 
-//    private static final long serialVersionUID = 1997955934111931587L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
