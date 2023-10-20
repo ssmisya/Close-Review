@@ -77,11 +77,13 @@ public class SecurityConfiguration {
 //                        .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
                         .anyRequest().authenticated()
                 )
+                //登录页面
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
                 );
         http
+                //logout设置
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
@@ -93,11 +95,14 @@ public class SecurityConfiguration {
         return http.build();
     }
 
+    //默认的密码编码类
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(16);
     }
 
+
+    //数据源
     @Bean("H2Datasource")
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -108,11 +113,15 @@ public class SecurityConfiguration {
         return dataSource;
     }
 
+
+    //用户管理类
     @Bean
     public UserDetailsManager users(DataSource dataSource) {
+        //初始化jdbc用户信息管理对象
         MyJdbcUserDetailsManager users = new MyJdbcUserDetailsManager(dataSource);
         //用户注册统一接口
         try {
+            //初始化待插入信息
             UserDto user = new UserDto(
                     "dev",
                     "dev",
@@ -123,9 +132,10 @@ public class SecurityConfiguration {
                     "China",
                     "ROLE_Administer"
             );
+            //插入用户至数据库
             users.createUser(user);
             }catch (UserAlreadyExistException | NullUserNameException | PasswordNotMatchException e){
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 //        UserDetails user = User.withDefaultPasswordEncoder()
 //                .username("dev")
