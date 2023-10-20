@@ -70,8 +70,9 @@ public class SecurityConfiguration {
         http
                 .authorizeRequests((authorize) -> authorize
                         //这里想要放行某个访问，当有2个servelet时只能用这种方法，SB开发者整一堆表示方法，新版本中全都用不了了
-                        .requestMatchers(new AntPathRequestMatcher("/h2/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/registration")).permitAll()
                         //放行某个角色对某页面的访问
+                        .requestMatchers(new AntPathRequestMatcher("/h2/**")).hasRole("Administer")
                         .requestMatchers(new AntPathRequestMatcher("/dev/**")).hasRole("Administer")
                         .requestMatchers(new AntPathRequestMatcher("/db/**")).access("hasRole('Administer') or hasRole('DBA')")
 //                        .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
@@ -79,6 +80,7 @@ public class SecurityConfiguration {
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .successForwardUrl("/")
                         .permitAll()
                 );
         http
@@ -125,7 +127,7 @@ public class SecurityConfiguration {
             );
             users.createUser(user);
             }catch (UserAlreadyExistException | NullUserNameException | PasswordNotMatchException e){
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 //        UserDetails user = User.withDefaultPasswordEncoder()
 //                .username("dev")

@@ -6,6 +6,10 @@
 </head>
 <body>
   <h1>Registration Error</h1>
+
+  <h2>Reason:</h2>
+  <h3 th:text="${exception_info}">Unknown</h3>
+
   <a th:href="@{/registration}">registration</a>
   <a th:href="@{/login}">login</a>
 </body>

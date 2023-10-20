@@ -23,6 +23,8 @@ public class RegistrationController {
     @Qualifier("H2Datasource")
     private DataSource dataSource;
 
+    private Exception RegistrationFailureException;
+
 
     @GetMapping("/registration")
     public String showRegistrationForm(WebRequest request, Model model) {
@@ -42,10 +44,18 @@ public class RegistrationController {
             MyJdbcUserDetailsManager manager = new MyJdbcUserDetailsManager(dataSource);
             manager.createUser(userDto);
         } catch (Exception e) {
+            RegistrationFailureException = new Exception(e);
             e.printStackTrace();
             return "registration_error";
         }
         return "login";
+    }
+
+    @GetMapping("/registration_error")
+    public void RegistrationFailureAdvice(WebRequest request, Model model){
+        if(!(RegistrationFailureException == null)){
+            model.addAttribute("exception_info", RegistrationFailureException.getMessage());
+        }
     }
 
 }
