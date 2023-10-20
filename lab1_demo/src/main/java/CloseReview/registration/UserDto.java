@@ -1,6 +1,8 @@
 package CloseReview.registration;
 
 import com.unboundid.util.NotNull;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -35,6 +37,39 @@ public class UserDto {
     @NotNull
     @NotEmpty
     private String role;
+
+    @NotNull
+    @NotEmpty
+    private Boolean enabled;
+
+    public UserDto(String userName, String nickName, String password, String matchingPassword, String email, String organization, String region, String role, Boolean enabled) {
+        this.userName = userName;
+        this.nickName = nickName;
+        this.password = password;
+        this.matchingPassword = matchingPassword;
+        this.email = email;
+        this.organization = organization;
+        this.region = region;
+        this.role = role;
+        this.enabled = enabled;
+    }
+
+    public UserDto() {
+
+    }
+
+    public UserDto(String userName, String nickName, String password, String matchingPassword, String email, String organization, String region, String role) {
+        this.userName = userName;
+        this.nickName = nickName;
+        this.password = password;
+        this.matchingPassword = matchingPassword;
+        this.email = email;
+        this.organization = organization;
+        this.region = region;
+        this.role = role;
+        this.enabled = true;
+    }
+
 
     // standard getters and setters
 
@@ -100,6 +135,18 @@ public class UserDto {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void encryptPassword(int strength){
+        setPassword(new BCryptPasswordEncoder(strength).encode(getPassword()));
     }
 
     @Override

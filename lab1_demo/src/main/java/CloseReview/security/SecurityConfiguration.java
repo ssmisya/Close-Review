@@ -15,6 +15,11 @@ package CloseReview.security;
  * limitations under the License.
  */
 
+import CloseReview.registration.Exception.NullUserNameException;
+import CloseReview.registration.Exception.PasswordNotMatchException;
+import CloseReview.registration.Exception.UserAlreadyExistException;
+import CloseReview.registration.MyJdbcUserDetailsManager;
+import CloseReview.registration.UserDto;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -67,8 +72,8 @@ public class SecurityConfiguration {
                         //这里想要放行某个访问，当有2个servelet时只能用这种方法，SB开发者整一堆表示方法，新版本中全都用不了了
                         .requestMatchers(new AntPathRequestMatcher("/h2/**")).permitAll()
                         //放行某个角色对某页面的访问
-                        .requestMatchers(new AntPathRequestMatcher("/dev/**")).hasRole("ADMIN")
-                        .requestMatchers(new AntPathRequestMatcher("/db/**")).access("hasRole('ADMIN') and hasRole('DBA')")
+                        .requestMatchers(new AntPathRequestMatcher("/dev/**")).hasRole("Administer")
+                        .requestMatchers(new AntPathRequestMatcher("/db/**")).access("hasRole('Administer') or hasRole('DBA')")
 //                        .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -105,18 +110,32 @@ public class SecurityConfiguration {
 
     @Bean
     public UserDetailsManager users(DataSource dataSource) {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("dev")
-                .password("password")
-                .roles("Administer")
-                .build();
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager();
-        users.setDataSource(dataSource);
-        users.setUsersByUsernameQuery("SELECT user_name AS username,password,enabled FROM user_info where user_name = ?");
-        users.setAuthoritiesByUsernameQuery("SELECT user_name AS username,role AS authority FROM user_role where user_name=?");
-        users.setCreateUserSql("INSERT INTO user_info (user_name, password ,enabled, email, organization, region) VALUES(?,?,?,'null','null','null');");
-        users.setCreateAuthoritySql("INSERT INTO user_role (user_name,role) VALUES (?,?)");
-//        users.createUser(user);
+        MyJdbcUserDetailsManager users = new MyJdbcUserDetailsManager(dataSource);
+        //用户注册统一接口
+        try {
+            UserDto user = new UserDto(
+                    "dev",
+                    "dev",
+                    "password",
+                    "password",
+                    "abc@somemail.com",
+                    "fdu",
+                    "China",
+                    "ROLE_Administer"
+            );
+            users.createUser(user);
+            }catch (UserAlreadyExistException | NullUserNameException | PasswordNotMatchException e){
+            e.printStackTrace();
+        }
+//        UserDetails user = User.withDefaultPasswordEncoder()
+//                .username("dev")
+//                .password("password")
+//                .roles("Administer")
+//                .build();
+//        users.setUsersByUsernameQuery("SELECT user_name AS username,password,enabled FROM user_info where user_name = ?");
+//        users.setAuthoritiesByUsernameQuery("SELECT user_name AS username,role AS authority FROM user_role where user_name=?");
+//        users.setCreateUserSql("INSERT INTO user_info (user_name, password ,enabled, email, organization, region) VALUES(?,?,?,'null','null','null');");
+//        users.setCreateAuthoritySql("INSERT INTO user_role (user_name,role) VALUES (?,?)");
         return users;
     }
 }

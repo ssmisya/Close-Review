@@ -1,20 +1,23 @@
-2023-10-19 19:53:56 jdbc[3]: exception
+2023-10-20 15:43:03 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
-2023-10-19 19:54:01 jdbc[3]: exception
+2023-10-20 15:43:12 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
-2023-10-19 19:54:07 jdbc[3]: exception
+2023-10-20 15:43:20 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
-2023-10-19 19:54:13 jdbc[3]: exception
+2023-10-20 15:43:31 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
-2023-10-19 19:54:18 jdbc[3]: exception
+2023-10-20 15:43:39 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
-2023-10-19 19:54:18 jdbc[3]: exception
+2023-10-20 15:43:39 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
-2023-10-19 19:54:18 jdbc[3]: exception
+2023-10-20 15:43:39 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
-2023-10-19 19:54:18 jdbc[3]: exception
+2023-10-20 15:43:39 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
-2023-10-19 19:54:18 jdbc[3]: exception
+2023-10-20 15:43:39 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
-2023-10-19 19:54:18 jdbc[3]: exception
+2023-10-20 15:43:40 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-214]
+2023-10-20 15:44:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found; SQL statement:
+select username,password,enabled from users where username = ? [42102-214]

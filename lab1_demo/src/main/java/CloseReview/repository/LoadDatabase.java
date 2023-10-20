@@ -38,11 +38,11 @@ class LoadDatabase {
 
         if (repository.findAll().isEmpty()){
             return args -> {
-                log.info("Preloading " + repository.save(new UserRole("fd23120240001","Administer")));
-                log.info("Preloading " + repository.save(new UserRole("fd23120240002","chair")));
-                log.info("Preloading " + repository.save(new UserRole("fd23120240003","PC member")));
-                log.info("Preloading " + repository.save(new UserRole("fd23120240004","author")));
-                log.info("Preloading " + repository.save(new UserRole("fd23120240005","author")));
+                log.info("Preloading " + repository.save(new UserRole("fd23120240001","ROLE_Administer")));
+                log.info("Preloading " + repository.save(new UserRole("fd23120240002","ROLE_chair")));
+                log.info("Preloading " + repository.save(new UserRole("fd23120240003","ROLE_PC member")));
+                log.info("Preloading " + repository.save(new UserRole("fd23120240004","ROLE_author")));
+                log.info("Preloading " + repository.save(new UserRole("fd23120240005","ROLE_author")));
             };
         }
         else{

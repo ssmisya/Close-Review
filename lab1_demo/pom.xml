@@ -74,12 +74,6 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-		<!--my baites-->
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>2.2.0</version>
-		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
