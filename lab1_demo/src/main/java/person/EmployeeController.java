@@ -27,12 +27,10 @@ class EmployeeController {
     List<Employee> all() {
         return repository.findAll();
     }
-
     // end::get-aggregate-root[]
     // 插入用户
     @PostMapping("/api/v1/user")
     Employee newEmployee(@RequestBody Employee newEmployee) {
-
         return repository.save(newEmployee);
     }
 
@@ -61,7 +59,6 @@ class EmployeeController {
                     return repository.save(newEmployee);
                 });
     }
-
     //删除用户信息
     @DeleteMapping("/api/v1/user/{id}")
     void deleteEmployee(@PathVariable Long id) {

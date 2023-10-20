@@ -1,0 +1,33 @@
+<!--
+  ~ Copyright 2020 the original author or authors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Hello Security</title>
+</head>
+<body>
+<div>
+    <h1>Close Review Home Page</h1>
+
+    <h1>Spring奥,</h1>
+<!--    <iframe width="560" height="315" src="https://www.youtube.com/embed/fPw3yp07v3I?si=WUvlQiLB8oZfaZgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ieaCJrHraNw?si=g71MP4A6rRDpj4-G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+</div>
+</body>
+</html>
