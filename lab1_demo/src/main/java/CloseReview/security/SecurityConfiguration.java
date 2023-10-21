@@ -130,7 +130,7 @@ public class SecurityConfiguration {
                     "abc@somemail.com",
                     "fdu",
                     "China",
-                    "ROLE_Administer"
+                    "Administer"
             );
             //插入用户至数据库
             users.createUser(user);
