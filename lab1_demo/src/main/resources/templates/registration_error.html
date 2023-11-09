@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration error</title>
+</head>
+<body>
+  <h1>Registration Error</h1>
+
+  <h2>Reason:</h2>
+  <h3 th:text="${exception_info}">Unknown</h3>
+
+  <a th:href="@{/registration}">registration</a>
+  <a th:href="@{/login}">login</a>
+</body>
+</html>
