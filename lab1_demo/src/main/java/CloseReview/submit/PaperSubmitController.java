@@ -64,14 +64,4 @@ public class PaperSubmitController {
             throw new PaperNotFoundException("Paper not found with title: " + title);
         }
     }
-
-    @GetMapping("/status")
-    public String getPaperNotificationResultByTitle(@RequestParam String title) {
-        Paper paper = paperRepository.findByTitle(title);
-        if (paper != null) {
-            return paper.getNotificationResult();
-        } else {
-            throw new PaperNotFoundException("Paper not found with title: " + title);
-        }
-    }
 }
