@@ -19,10 +19,10 @@ public class PaperReviewController {
         this.paperRepository = paperRepository;
     }
 
-    @GetMapping("/pending")
-    public List<Paper> getPendingPapers() {
-        // 获取待评审的论文，可以根据状态来筛选
-        return paperRepository.findByStatus("Submitted");
+    @GetMapping("/pending/{userId}")
+    public List<Paper> getPendingPapers(@PathVariable Long userId) {
+        // 获取用户待评审的论文，可以根据用户ID和状态来筛选
+        return paperRepository.findByReviewerIdAndStatus(userId, "Submitted");
     }
 
     @PostMapping("/submitReview/{id}")
@@ -44,5 +44,13 @@ public class PaperReviewController {
                 .orElseThrow(() -> new PaperNotFoundException("Paper not found with id: " + id));
 
         return paper;
+    }
+
+    @PostMapping("/sendInvitation/{paperId}")
+    public String sendInvitation(@PathVariable Long paperId, @RequestParam("reviewerId") Long reviewerId) {
+        // 发送审稿邀请消息
+        Paper paper = paperRepository.findById(paperId)
+                .orElseThrow(() -> new PaperNotFoundException("Paper not found with id: " + paperId));
+        return reviewerId + "邀请你评审轮文\n" + paper.getTitle();
     }
 }

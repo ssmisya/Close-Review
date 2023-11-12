@@ -8,5 +8,9 @@ import java.util.List;
 
 public interface PaperRepository extends JpaRepository<Paper, Long> {
     List<Paper> findByStatus(String status);
+
     Paper findByTitle(String title);
+
+    List<Paper> findByReviewerIdAndStatus(Long reviewerId, String status);
+
 }
