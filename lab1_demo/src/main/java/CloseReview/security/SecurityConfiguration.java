@@ -48,12 +48,11 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
-
 import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration {
+public class SecurityConfiguration{
 
 
     @Bean
@@ -71,11 +70,20 @@ public class SecurityConfiguration {
                 .authorizeRequests((authorize) -> authorize
                         //这里想要放行某个访问，当有2个servelet时只能用这种方法，SB开发者整一堆表示方法，新版本中全都用不了了
                         .requestMatchers(new AntPathRequestMatcher("/registration")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/css")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/js")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/images")).permitAll()
+
+
                         //放行某个角色对某页面的访问
                         .requestMatchers(new AntPathRequestMatcher("/dev/**")).hasRole("Administer")
                         .requestMatchers(new AntPathRequestMatcher("/h2/**")).access("hasRole('Administer') or hasRole('DBA')")
 //                        .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
+//                        .requestMatchers("/", "/resources/static/**").permitAll()
                         .anyRequest().authenticated()
+//
+
+
                 )
                 //登录页面
                 .formLogin((form) -> form
@@ -92,6 +100,11 @@ public class SecurityConfiguration {
 //                .addLogoutHandler(logoutHandler)
 //                .deleteCookies(cookieNamesToClear)
         // @formatter:on
+
+
+
+
+
         return http.build();
     }
 

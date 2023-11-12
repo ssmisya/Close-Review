@@ -121,7 +121,7 @@ src
 │       ├── application.properties                    #app的定义文件
 │       ├── static                                    #里面包含了css和js文件     
 │       └── templates                                 #thmleaf模板文件
-│           ├── addStudent.html
+│           ├── application_meeting.html
 │           ├── index.html                            #主页
 │           ├── login.html                            #登录页
 │           ├── registration.html                     #注册页

@@ -1,33 +1,90 @@
-<!--
-  ~ Copyright 2020 the original author or authors.
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~      https://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
-
-<html xmlns:th="https://www.thymeleaf.org">
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <title>Hello Security</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--<link rel="stylesheet" type="text/css" href="../static/css/style_index.css">-->
+	<link th:href="@{/css/style_index.css}" rel="stylesheet">
+
+
+	<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+
+<title>主页</title>
 </head>
 <body>
-<div>
-    <h1>Close Review Home Page</h1>
+	<div class="wrap">
+		<div class="container">
+			<table class="table">
+				<tr>
+					<td>
+						<div class="funcation_icon">
+<!--							<a href=""><img th:src="@{/images/meeting.png}"/></a>-->
+<!--							申请会议-->
+							<a href="/applicationmeeting"><img src="images/meeting.png" /></a>
+<!--							<img src="../static/images/meeting.png" />-->
 
-    <h1>Spring奥,</h1>
-<!--    <iframe width="560" height="315" src="https://www.youtube.com/embed/fPw3yp07v3I?si=WUvlQiLB8oZfaZgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ieaCJrHraNw?si=g71MP4A6rRDpj4-G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
-</div>
+						</div>
+						<div class="funcation_name">申请会议</div>
+					</td>
+					<td>
+						<div class="funcation_icon">
+<!--							<img src="../static/images/manage_vip.png" />-->
+<!--							投稿-->
+							<a href="/contribute"><img th:src="@{/images/manage_vip.png}"/></a>
+
+						</div>
+						<div class="funcation_name">投稿</div>
+					</td>
+					<td>
+						<div class="funcation_icon">
+<!--							<img src="../static/images/manage_book.png" />-->
+<!--							审稿-->
+							<a href=""><img th:src="@{/images/manage_book.png}"/></a>
+
+						</div>
+						<div class="funcation_name">审稿</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="funcation_icon">
+<!--							<a href="bestSeller.action"><img src="../static/images/bestsale_book.png"/></a>-->
+							<a href="/invite"><img th:src="@{/images/bestsale_book.png}"/></a>
+						</div>
+						<div class="funcation_name">邀请审稿人</div>
+					</td>
+					<td>
+						<div class="funcation_icon">
+<!--							<a href="saleStatistics.action"><img src="../static/images/sale_statistic.png" /></a>-->
+							<a href="/showmessage"><img th:src="@{/images/sale_statistic.png}"/></a>
+						</div>
+						<div class="funcation_name">我的消息</div>
+					</td>
+					<td>
+						<div class="funcation_icon">
+<!--							<img src="../static/images/out.png" />-->
+							<a href="/login"><img th:src="@{/images/out.png}"/></a>
+						</div>
+						<div class="funcation_name">注销</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+
+	</div>
+
 </body>
 </html>
