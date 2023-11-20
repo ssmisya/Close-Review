@@ -11,3 +11,6 @@ LAB1的demo为Application,对应路径为`lab1_demo/src/main/java/person/Applica
 
 ## 课堂记录
 [课堂记录链接](https://docs.qq.com/doc/DYU9NSlZHYml2UHJ6?scene=821b70b4779d1d372facad7eioVnq1)
+
+## 服务划分
+[服务划分连接](https://docs.qq.com/sheet/DYU9OWmhScmVuc3d6?tab=wb0e9t)
