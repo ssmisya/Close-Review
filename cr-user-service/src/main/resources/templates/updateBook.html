@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <base href="<%=basePath%>">
+
+    <title>书籍信息修改</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+</head>
+
+<body class="bg">
+<center>
+    <br>
+    <h2>书籍信息</h2>
+    <hr>
+    <br>
+    <h3>要修改的书籍信息如下</h3>
+    <table width="496" border="100" cellSpacing=1
+           style="border: 1pt dashed; font-size: 15pt;" height="31">
+        <tr>
+            <td>书籍号</td>
+            <td>书名</td>
+            <td>类型</td>
+            <td>作者</td>
+            <td>价格</td>
+            <td>出版社</td>
+            <td>库存</td>
+        </tr>
+        <%
+        String book_id;
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        ArrayList
+        <Book> subResult = (ArrayList
+            <Book>) request.getAttribute("result");
+                if (!subResult.isEmpty()) {
+                for (int i = 0; i < subResult.size(); i++) {
+                Book v = subResult.get(i);
+                out.print("
+                <tr>");
+                    out.print("
+                    <td>" + v.getId() + "</td>
+                    ");
+                    out.print("
+                    <td>" + v.getName() + "</td>
+                    ");
+                    out.print("
+                    <td>" + v.getType() + "</td>
+                    ");
+                    out.print("
+                    <td>" + v.getAuthor() + "</td>
+                    ");
+                    out.print("
+                    <td>" + v.getCost() + "</td>
+                    ");
+                    out.print("
+                    <td>" + v.getPress() + "</td>
+                    ");
+                    out.print("
+                    <td>" + v.getStock() + "</td>
+                    ");
+                    }
+                    }
+                    %>
+    </table>
+    <h3>将书籍信息更改为：</h3>
+    <form action="UpdateBookServlet" method="post">
+        <input type="hidden" name="methodName" value="3"/>
+        <h2>
+            修改前的书籍号：<input class="input_input" type="text" name="id"
+                                  class="{required:true}" title="学号必须为数字"></input><br>
+        </h2>
+        <h2>
+            书籍号：<input class="input_input" type="text" name="update_id"
+                          class="{required:true}" title="学号必须为数字"></input><br>
+        </h2>
+        <h2>
+            书名：<input class="input_input1" type="text" name="update_name"
+                        title="姓名不能为空"></input><br>
+        </h2>
+        <h2>
+            类型：<input class="input_input2" type="text"
+                        name="update_type" title="专业不能为空"></input><br>
+        </h2>
+        <h2>
+            作者：<input class="input_input2" type="text"
+                        name="update_author" title="专业不能为空"></input><br>
+        </h2>
+        <h2>
+            价格：<input class="input_input2" type="text"
+                        name="update_cost" title="专业不能为空"></input><br>
+        </h2>
+        <h2>
+            出版社：<input class="input_input2" type="text"
+                          name="update_press" title="专业不能为空"></input><br>
+        </h2>
+        <h2>
+            库存：<input class="input_input2" type="text"
+                        name="update_stock" title="专业不能为空"></input><br>
+        </h2>
+
+
+        <input type="submit" value="修改"/>
+    </form>
+
+    <br>
+
+    <h3>
+        <a href=ShowBookServlet?id= <%=""%> &name=<%=""%>>返回信息查询页面</a>
+    </h3>
+</center>
+</body>
+</html>

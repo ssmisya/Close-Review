@@ -1,0 +1,64 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>会议申请</title>
+    <link th:href="@{/css/style_contribute.css}" rel="stylesheet">
+    <script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+    <script th:src="@{/js/add_student.js}"></script>
+</head>
+
+<body>
+<div class=wrap>
+    <div class=bg>
+        <br>
+        <center class="wrap">
+            <h1 style="color:white">会议信息输入</h1>
+            <hr>
+            <form id="form">
+                <input type="hidden" name="methodName" value="0"/>
+<!--                <h2>-->
+<!--                    学号：<input class="uid" type="text" name="uid" id="uid"-->
+<!--                                  title="学号必须为数字"></input><br>-->
+<!--                </h2>-->
+                <h2 style="color:white" >
+                    会议名：<input class="input_name" type="text" name="name" id="name"
+                                title="名字不能为空"></input><br>
+                </h2>
+                <h2 style="color:white" >
+                    学科领域：<input class="input_age" type="text" name="type" id="age"
+                                title=""></input><br>
+                </h2>
+                <h2 style="color:white" >
+                    会议开始时间：<label for="dateInput"></label>
+                    <input type="date" id="start_date" name="date">
+                </h2>
+                <h2 style="color:white" >
+                    投稿截至时间：<label for="dateInput"></label>
+                    <input type="date" id="contribute_end_date" name="date">
+                </h2>
+                <h2 style="color:white" >
+                    会议结束时间：<label for="dateInput"></label>
+                    <input type="date" id="end_date" name="date">
+                </h2>
+                <input class="input_submit" type="submit" id="add_submit" value="提交"/>
+            </form>
+
+        </center>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
