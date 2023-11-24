@@ -21,9 +21,10 @@ public class MyJdbcUserDetailsManager extends JdbcUserDetailsManager {
         super.setAuthoritiesByUsernameQuery("SELECT user_name AS username,role AS authority FROM user_role where user_name=?");
 
     }
-    public User getUser(String UserId){
-        return null;
-    }
+//    public User getUser(String UserId){
+//        return null;
+//    }
+
 
     public void createUser(final UserDto user) {
         validateUserDetails(user);

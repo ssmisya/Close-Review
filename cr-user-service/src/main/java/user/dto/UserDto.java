@@ -1,6 +1,6 @@
 package user.dto;
 
-import com.unboundid.util.NotNull;
+import javax.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;

@@ -1,9 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/cr-grpc-service" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/lab1_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/cr-user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/cr-grpc-service/pom.xml" />
       </list>
     </option>
   </component>

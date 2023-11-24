@@ -8,7 +8,7 @@
 		<version>3.1.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.CloseReview</groupId>
+	<groupId>com.closereview</groupId>
 	<artifactId>cr-user-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cr-user-service</name>
@@ -51,32 +51,36 @@
             <version>2.0.1.Final</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-		<dependency>
-			<groupId>com.unboundid</groupId>
-			<artifactId>unboundid-ldapsdk</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.unboundid</groupId>-->
+<!--			<artifactId>unboundid-ldapsdk</artifactId>-->
+<!--		</dependency>-->
         <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring6</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--            <version>1.18.20</version>-->
+<!--        </dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.cloud</groupId>-->
+<!--			<artifactId>spring-cloud-commons</artifactId>-->
+<!--			<version>3.1.5</version>-->
+<!--		</dependency>-->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-commons</artifactId>
-			<version>3.1.5</version>
+			<groupId>net.devh</groupId>
+			<artifactId>grpc-spring-boot-starter</artifactId>
+			<version>2.15.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.closereview</groupId>
+			<artifactId>cr-grpc-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -87,6 +91,10 @@
 						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
 					</image>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

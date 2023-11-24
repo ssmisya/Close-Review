@@ -19,5 +19,6 @@ UserRepository extends JpaRepository<User, Long> {
     @Modifying
     void deleteByUserName(String userName);
 
-    User findByUserId(String userId);
+    @Modifying
+    Optional<User> findById(Long userId);
 }

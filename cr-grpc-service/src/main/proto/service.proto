@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+
+package grpc;
+
+option java_multiple_files = true;
+option java_package = "net.devh.boot.grpc.examples.lib";
+option java_outer_classname = "UserSearch";
+
+
+service UserSearchService {
+  rpc SearchUserByName (UserRequest) returns (UserResponse) {
+  }
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+  }
+}
+
+message UserRequest {
+  string query_username = 1;
+}
+
+message UserResponse {
+  uint64 id=1;
+  string userName=2;
+  string nickName=3;
+  string email=4;
+  string organization=5;
+  string region=6;
+  string role=8;
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
