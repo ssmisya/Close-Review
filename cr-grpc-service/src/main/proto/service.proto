@@ -27,6 +27,7 @@ message UserResponse {
   string organization=5;
   string region=6;
   string role=8;
+  int32 status = 9;
 }
 
 // The request message containing the user's name.

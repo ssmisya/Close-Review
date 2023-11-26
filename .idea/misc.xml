@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/cr-conference-service" />
     <file type="web" url="file://$PROJECT_DIR$/cr-grpc-service" />
+    <file type="web" url="file://$PROJECT_DIR$/cr-test-grpc" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -10,7 +12,16 @@
         <option value="$PROJECT_DIR$/lab1_demo/pom.xml" />
         <option value="$PROJECT_DIR$/cr-user-service/pom.xml" />
         <option value="$PROJECT_DIR$/cr-grpc-service/pom.xml" />
+        <option value="$PROJECT_DIR$/cr-conference-service/pom.xml" />
+        <option value="$PROJECT_DIR$/cr-submit-service/pom.xml" />
+        <option value="$PROJECT_DIR$/cr-test/pom.xml" />
+        <option value="$PROJECT_DIR$/cr-test-grpc/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/cr-test/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
