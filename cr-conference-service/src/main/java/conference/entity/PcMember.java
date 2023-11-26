@@ -17,4 +17,7 @@ public class PcMember {
 
     @Column(name = "incharge_papers", columnDefinition = "varchar(200)")
     private String inchargePapers;
+
+    @Column(name = "topic", columnDefinition = "varchar(200)")
+    private String topic;
 }

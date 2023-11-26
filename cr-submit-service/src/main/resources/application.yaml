@@ -3,14 +3,14 @@ server:
 spring:
   application:
     name: cr-submit-service
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+      location: "tmp/tmp_file"
 
 grpc:
   client:
-    cr-user-service:
-      address: 'static://127.0.0.1:9091'
-      enableKeepAlive: true
-      keepAliveWithoutCalls: true
-      negotiationType: plaintext
     cr-conference-service:
       address: 'static://127.0.0.1:9092'
       enableKeepAlive: true

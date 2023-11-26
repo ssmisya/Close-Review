@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/cr-grpc-service/src/main/java/generated" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-grpc-service/target/generated-sources/protobuf/grpc-java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-grpc-service/target/generated-sources/protobuf/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cr-review-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-submit-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-test-grpc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-test/src/main/java" charset="UTF-8" />

@@ -32,8 +32,8 @@ public class SubmitController {
     }
 
     @GetMapping("/paper/search/conferenceid/{conference_id}")
-    Optional<Paper> searchByConferenceId(@PathVariable String conference_id) {
-        Optional<Paper> res =  repository.findByConferenceId(conference_id);
+    List<Paper> searchByConferenceId(@PathVariable String conference_id) {
+        List<Paper> res =  repository.findByConferenceId(conference_id);
         if (res.isEmpty()) {
             throw new PaperNotFoundException(conference_id);
         }
@@ -42,7 +42,7 @@ public class SubmitController {
 
     @GetMapping("/paper/search/paperid/{paper_id}")
     Optional<Paper> searchByPaperId(@PathVariable String paper_id) {
-        Optional<Paper> res =  repository.findByPapereId(paper_id);
+        Optional<Paper> res =  repository.findByPaperId(paper_id);
         if (res.isEmpty()) {
             throw new PaperNotFoundException(paper_id);
         }
@@ -60,7 +60,7 @@ public class SubmitController {
     @PostMapping("/paper/new/{paper_id}")
     @ResponseBody
     public String uploadPaperByPaperId(@RequestPart MultipartFile file, @PathVariable String paper_id) throws IOException {
-        return uploadPaperByPaperId(file,paper_id);
+        return service.uploadPaperByPaperId(file,paper_id);
     }
 
     /**
@@ -69,8 +69,8 @@ public class SubmitController {
      * @功能描述 下载文件:
      */
     //下载论文
-    @RequestMapping("/paper/download")
-    public String  download(String paper_id, HttpServletResponse response) {
+    @GetMapping("/paper/download/{paper_id}")
+    public String  download(@PathVariable String paper_id, HttpServletResponse response) {
         return service.downloadPaperByPaperId(paper_id,response);
     }
 

@@ -5,6 +5,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import net.devh.boot.grpc.examples.lib.ConferenceRequest;
 import net.devh.boot.grpc.examples.lib.ConferenceServiceGrpc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import submit.entity.Paper;
@@ -16,12 +18,16 @@ import submit.repository.PaperRepository;
 import java.io.*;
 import java.net.URLEncoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 @Service
 public class SubmitService {
     @GrpcClient("cr-conference-service")
     private ConferenceServiceGrpc.ConferenceServiceBlockingStub conferenceStub;
+
+    private static final Logger log = LoggerFactory.getLogger(SubmitService.class);
 
     final PaperRepository repository;
 
@@ -55,8 +61,8 @@ public class SubmitService {
                     .build();
             paperNum = conferenceStub.queryPaperNumAndUpdateOne(pnRequest).getValue();
             // set paper
-            String paperId = new String(String.valueOf(paperNum));
-            String pdfPath = "/tmp/conference/"+conferenceId+"/"+paperId+".pdf";
+            String paperId = conferenceId +"_"+ new String(String.valueOf(paperNum));
+            String pdfPath = "tmp/conference/"+conferenceId+"/"+paperId+".pdf";
             paper.setPaperId(paperId);
             paper.setPdfPath(pdfPath);
             paper.setConferenceId(conferenceId);
@@ -71,10 +77,14 @@ public class SubmitService {
     }
 
     public String uploadPaperByPaperId(MultipartFile file, String paper_id) throws IOException {
-        Optional<Paper> paper = repository.findByPapereId(paper_id);
+        Optional<Paper> paper = repository.findByPaperId(paper_id);
         if(paper.isPresent()){
-            String filePath = paper.get().getPdfPath();
+
+            String filePath =  Paths.get(paper.get().getPdfPath()).toAbsolutePath().toString();
+            log.info("saving into "+filePath);
             File dest = new File(filePath);
+            createParentFile(dest);
+            dest = new File(filePath);
             Files.copy(file.getInputStream(), dest.toPath());
             return "Upload file success : " + dest.getAbsolutePath();
         }
@@ -82,7 +92,7 @@ public class SubmitService {
     }
 
     public String downloadPaperByPaperId(String paper_id, HttpServletResponse response){
-        Optional<Paper> paper = repository.findByPapereId(paper_id);
+        Optional<Paper> paper = repository.findByPaperId(paper_id);
         if(paper.isPresent()){
             String filePath = paper.get().getPdfPath();
             try {
@@ -92,7 +102,6 @@ public class SubmitService {
                 String filename = file.getName();
                 // 获取文件后缀名
                 String ext = filename.substring(filename.lastIndexOf(".") + 1).toLowerCase();
-
                 // 将文件写入输入流
                 FileInputStream fileInputStream = new FileInputStream(file);
                 InputStream fis = new BufferedInputStream(fileInputStream);
@@ -120,7 +129,11 @@ public class SubmitService {
         return "No such paper";
     }
 
-
-
-
+    private void createParentFile(File file) {
+        File parentFile = file.getParentFile();
+        if (null != parentFile && !parentFile.exists()) {
+            parentFile.mkdirs(); // 创建文件夹
+            createParentFile(parentFile); // 递归创建父级目录
+        }
+    }
 }

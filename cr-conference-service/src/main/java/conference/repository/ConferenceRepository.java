@@ -17,16 +17,15 @@ import java.util.Optional;
 public interface
 ConferenceRepository extends JpaRepository<Conference, Long> {
 
-    @Modifying
+
     List<Conference> findByConferenceName(String conferenceName);
 
-    @Modifying
+
     Optional<Conference> findByConferenceId(String conferenceId);
 
     @Modifying
     void deleteByConferenceId(String conferenceId);
 
-    @Modifying
     Optional<Conference> findById(Long userId);
 
     @Query("SELECT p FROM PcMember  p where p.conferenceId=?1")
@@ -44,6 +43,7 @@ ConferenceRepository extends JpaRepository<Conference, Long> {
     @Query("SELECT p.conferenceId FROM Conference  p where p.shortName=?1")
     String findConferenceIdByShortName(String shortName);
 
+    @Modifying
     @Query("UPDATE Conference p SET p.paperNum=?2 where p.conferenceId=?1")
-    String upDatePaperNumByConferenceId(String conferenceId, Long paperNum);
+    void upDatePaperNumByConferenceId(String conferenceId, Long paperNum);
 }

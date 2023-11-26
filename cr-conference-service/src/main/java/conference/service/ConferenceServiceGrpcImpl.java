@@ -1,6 +1,7 @@
 package conference.service;
 import conference.repository.ConferenceRepository;
 import io.grpc.stub.StreamObserver;
+import jakarta.transaction.Transactional;
 import net.devh.boot.grpc.examples.lib.*;
 import net.devh.boot.grpc.server.service.GrpcService;
 
@@ -22,6 +23,7 @@ public class ConferenceServiceGrpcImpl extends ConferenceServiceGrpc.ConferenceS
         responseObserver.onCompleted();
     }
 
+    @Transactional
     @Override
     public void queryPaperNumAndUpdateOne(ConferenceRequest request, StreamObserver<ConferenceIntResponse> responseObserver){
         String conferenceId = request.getQueryContent();
@@ -69,7 +71,7 @@ public class ConferenceServiceGrpcImpl extends ConferenceServiceGrpc.ConferenceS
     public void updatePaperNumByConferenceId(ConferenceIntAndStringRequest request, StreamObserver<ConferenceIntResponse> responseObserver) {
         String conferenceId = request.getQueryString();
         Long num = request.getQueryInt();
-        String id = repository.upDatePaperNumByConferenceId(conferenceId,num);
+        repository.upDatePaperNumByConferenceId(conferenceId,num);
         ConferenceIntResponse reply = ConferenceIntResponse.newBuilder()
                 .setValue(1)
                 .build();

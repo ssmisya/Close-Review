@@ -16,16 +16,16 @@ import java.util.Optional;
 public interface
 PaperRepository extends JpaRepository<Paper, Long> {
 
-    @Modifying
-    Optional<Paper> findByPapereId(String conferenceId);
 
-    @Modifying
-    Optional<Paper> findByConferenceId(String conferenceId);
+    Optional<Paper> findByPaperId(String conferenceId);
+
+    List<Paper> findByConferenceId(String conferenceId);
+
 
     @Modifying
     void deleteByPaperId(String conferenceId);
 
-    @Modifying
+
     Optional<Paper> findById(Long userId);
 
 

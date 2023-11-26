@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cr-conference-service" />
         <module name="cr-submit-service" />
+        <module name="cr-review-service" />
         <module name="cr-grpc-service" />
         <module name="demo" />
         <module name="cr-user-service" />
@@ -26,6 +27,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="cr-conference-service" options="-parameters" />
       <module name="cr-grpc-service" options="-parameters" />
+      <module name="cr-review-service" options="-parameters" />
       <module name="cr-submit-service" options="-parameters" />
       <module name="cr-test" options="-parameters" />
       <module name="cr-test-grpc" options="-parameters" />

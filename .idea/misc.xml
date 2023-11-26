@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/cr-submit-service/pom.xml" />
         <option value="$PROJECT_DIR$/cr-test/pom.xml" />
         <option value="$PROJECT_DIR$/cr-test-grpc/pom.xml" />
+        <option value="$PROJECT_DIR$/cr-review-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
