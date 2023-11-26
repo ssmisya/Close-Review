@@ -32,4 +32,18 @@ ConferenceRepository extends JpaRepository<Conference, Long> {
     @Query("SELECT p FROM PcMember  p where p.conferenceId=?1")
     Optional<PcMember> findPcMemberByConferenceId(String conferenceId);
 
+    @Query("SELECT p.paperNum FROM Conference  p where p.conferenceId=?1")
+    Long findPaperNumByConferenceId(String conferenceId);
+
+    @Query("SELECT p.status FROM Conference  p where p.conferenceId=?1")
+    String findConferenceStatusByConferenceId(String conferenceId);
+
+    @Query("SELECT p.conferenceId FROM Conference  p where p.conferenceName=?1")
+    String findConferenceIdByConferenceName(String conferenceName);
+
+    @Query("SELECT p.conferenceId FROM Conference  p where p.shortName=?1")
+    String findConferenceIdByShortName(String shortName);
+
+    @Query("UPDATE Conference p SET p.paperNum=?2 where p.conferenceId=?1")
+    String upDatePaperNumByConferenceId(String conferenceId, Long paperNum);
 }

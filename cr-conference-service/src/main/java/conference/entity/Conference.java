@@ -42,11 +42,14 @@ public class Conference {
     @Column(name = "hold_place", columnDefinition = "varchar(100)")
     private String holdPlace;
 
+    @Column(name = "paper_num")
+    private Long paperNum;
+
 
     public Conference() {
     }
 
-    public Conference(String conferenceId, String conferenceName, String shortName, String topic, String status, String openTime, String ddlTime, String holdPlace) {
+    public Conference(String conferenceId, String conferenceName, String shortName, String topic, String status, String openTime, String ddlTime, String holdPlace,Long paperNum) {
         this.conferenceId = conferenceId;
         this.conferenceName = conferenceName;
         this.shortName = shortName;
@@ -55,6 +58,7 @@ public class Conference {
         this.openTime = openTime;
         this.ddlTime = ddlTime;
         this.holdPlace = holdPlace;
+        this.paperNum = paperNum;
     }
 
     public Long getId() {
@@ -127,5 +131,13 @@ public class Conference {
 
     public void setHoldPlace(String holdPlace) {
         this.holdPlace = holdPlace;
+    }
+
+    public Long getPaperNum() {
+        return paperNum;
+    }
+
+    public void setPaperNum(Long paperNum) {
+        this.paperNum = paperNum;
     }
 }

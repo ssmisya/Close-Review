@@ -10,7 +10,6 @@
         <module name="cr-submit-service" />
         <module name="cr-grpc-service" />
         <module name="demo" />
-        <module name="cr-test-grpc" />
         <module name="cr-user-service" />
       </profile>
     </annotationProcessing>
@@ -18,6 +17,7 @@
       <module name="cr-conference-service.main" target="17" />
       <module name="cr-conference-service.test" target="17" />
       <module name="cr-test" target="17" />
+      <module name="cr-test-grpc" target="17" />
       <module name="cr-test-grpc.main" target="17" />
       <module name="cr-test-grpc.test" target="17" />
     </bytecodeTargetLevel>

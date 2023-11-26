@@ -27,7 +27,7 @@ public class ConferenceService {
     public String receiveGreeting(String name) {
         try{
             HelloRequest request = HelloRequest.newBuilder()
-                    .setName("123")
+                    .setName(name)
                     .build();
             return userSearchServiceBlockingStub.sayHello(request).getMessage();
         }catch (final StatusRuntimeException e) {

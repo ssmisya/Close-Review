@@ -1,0 +1,52 @@
+syntax = "proto3";
+import "service.proto";
+
+
+package grpc;
+
+option java_multiple_files = true;
+option java_package = "net.devh.boot.grpc.examples.lib";
+option java_outer_classname = "Conference";
+
+
+service ConferenceService {
+  rpc QueryPaperNumAndUpdateOne (ConferenceRequest) returns (ConferenceIntResponse) {
+  }
+  rpc QueryConferenceStatus (ConferenceRequest) returns (ConferenceStringResponse){
+  }
+  rpc QueryConferenceIdByConferenceName (ConferenceRequest) returns (ConferenceStringResponse){
+  }
+  rpc QueryConferenceIdByShortName (ConferenceRequest) returns (ConferenceStringResponse){
+  }
+  rpc UpdatePaperNumByConferenceId (ConferenceIntAndStringRequest) returns (ConferenceIntResponse){
+  }
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+  }
+}
+
+message ConferenceIntAndStringRequest {
+  int64 query_int = 1;
+  string query_string = 2;
+}
+
+message ConferenceRequest {
+  string query_content = 1;
+}
+
+message ConferenceStringResponse {
+  string value=1;
+}
+
+message ConferenceIntResponse{
+  int64 value=1;
+}
+
+//// The request message containing the user's name.
+//message HelloRequest {
+//  string name = 1;
+//}
+//
+//// The response message containing the greetings
+//message HelloReply {
+//  string message = 1;
+//}

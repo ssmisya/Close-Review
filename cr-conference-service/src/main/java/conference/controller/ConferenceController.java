@@ -81,6 +81,7 @@ public class ConferenceController {
                     conference.setOpenTime(newConference.getOpenTime());
                     conference.setDdlTime(newConference.getDdlTime());
                     conference.setHoldPlace(newConference.getHoldPlace());
+                    conference.setPaperNum(newConference.getPaperNum());
                     return repository.save(conference);
                 })
                 .orElseGet(() -> {
