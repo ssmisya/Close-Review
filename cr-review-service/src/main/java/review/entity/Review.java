@@ -21,49 +21,55 @@ public class Review {
     @Column(name = "rebuttal", columnDefinition = "text")
     private String rebuttal;
 
-    @Column(name = "advice", columnDefinition = "text")
-    private String advice;
+    @Column(name = "rank", columnDefinition = "int")
+    private int rank;
 
-    @Column(name = "abstract_info", columnDefinition = "varchar(800)")
-    private String abstractInfo;
+    @Column(name = "confidence", columnDefinition = "text")
+    private String confidence;
 
-    public Paper(String paperId, String conferenceName,String conferenceId, String author, String pdfPath, String email, String status, String rebuttal, String advice, String abstractInfo,String topic) {
+    @Column(name = "comment", columnDefinition = "text")
+    private String comment;
+
+    @Column(name = "rebuttal_sign", columnDefinition = "int")
+    private int rebuttalSign;
+
+
+    public Review(String paperId, String userName, String conferenceId, String rebuttal, int rank, String confidence, String comment) {
         this.paperId = paperId;
+        this.userName = userName;
         this.conferenceId = conferenceId;
-        this.conferenceName = conferenceName;
-        this.author = author;
-        this.pdfPath = pdfPath;
-        this.email = email;
-        this.status = status;
         this.rebuttal = rebuttal;
-        this.advice = advice;
-        this.abstractInfo = abstractInfo;
-        this.topic = topic;
+        this.rank = rank;
+        this.confidence = confidence;
+        this.comment = comment;
+        this.rebuttalSign = 0;
     }
 
-    public Paper(PaperDto dto){
-        this.paperId = "tbd";
-        this.conferenceName = dto.getConferenceName();
-        this.conferenceId = "tbd";
-        this.author = dto.getAuthor();
-        this.pdfPath = "/tmp/save_pdf/1.pdf";
-        this.email = dto.getEmail();
-        this.status = "submit";
+    public Review(ReviewAssignDto dto){
+        this.paperId = dto.getPaperId();
+        this.userName = dto.getUserName();
+        this.conferenceId = dto.getConferenceId();
+        this.rebuttalSign = 0;
         this.rebuttal = "";
-        this.advice = "";
-        this.abstractInfo = dto.getAbstractInfo();
-        this.topic = dto.getTopic();
+        this.rank = 0;
+        this.confidence = "";
+        this.comment = "";
     }
 
-    public Paper() {
+    public Review(String paperId, String userName, String conferenceId) {
+        this.paperId = paperId;
+        this.userName = userName;
+        this.conferenceId = conferenceId;
     }
 
-    public String getConferenceName() {
-        return conferenceName;
+    public Review(){}
+
+    public int getRebuttalSign() {
+        return rebuttalSign;
     }
 
-    public void setConferenceName(String conferenceName) {
-        this.conferenceName = conferenceName;
+    public void setRebuttalSign(int rebuttalSign) {
+        this.rebuttalSign = rebuttalSign;
     }
 
     public Long getId() {
@@ -82,44 +88,20 @@ public class Review {
         this.paperId = paperId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getConferenceId() {
         return conferenceId;
     }
 
     public void setConferenceId(String conferenceId) {
         this.conferenceId = conferenceId;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getPdfPath() {
-        return pdfPath;
-    }
-
-    public void setPdfPath(String pdfPath) {
-        this.pdfPath = pdfPath;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getRebuttal() {
@@ -130,20 +112,28 @@ public class Review {
         this.rebuttal = rebuttal;
     }
 
-    public String getAdvice() {
-        return advice;
+    public int getRank() {
+        return rank;
     }
 
-    public void setAdvice(String advice) {
-        this.advice = advice;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
-    public String getAbstractInfo() {
-        return abstractInfo;
+    public String getConfidence() {
+        return confidence;
     }
 
-    public void setAbstractInfo(String abstractInfo) {
-        this.abstractInfo = abstractInfo;
+    public void setConfidence(String confidence) {
+        this.confidence = confidence;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
 

@@ -16,8 +16,13 @@ import java.util.Optional;
  */
 public interface
 PcMemberRepository extends JpaRepository<PcMember, Long> {
-    @Modifying
-    Optional<PcMember> findByConferenceId(String conferenceId);
+
+
+    List<PcMember> findByConferenceId(String conferenceId);
+
+    Optional<PcMember> findByUserName(String userName);
+
+    List<PcMember> findByTopic(String topic);
 
     @Modifying
     void deleteById(Long Id);

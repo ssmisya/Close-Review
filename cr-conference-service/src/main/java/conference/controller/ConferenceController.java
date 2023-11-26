@@ -112,6 +112,20 @@ public class ConferenceController {
         return res;
     }
 
+    // 查找某一topic的Pc member
+    @GetMapping("/conference/pcmember/findbytopic/{topic}")
+    List<PcMember> findPcmemberByTopic(@PathVariable String  topic) {
+        return pcMemberRepository.findByTopic(topic);
+    }
+
+
+    //查找自己是否是某个会议的Pcmember
+    @GetMapping("/conference/pcmember/findbyusername/{user_name}")
+    Optional<PcMember> findPcmemberByUserName(@PathVariable String user_name){
+        return pcMemberRepository.findByUserName(user_name);
+    }
+
+
     // 新建Pc member
     @PostMapping("/conference/pcmember/new")
     PcMember newPcmember(@RequestBody PcMember newPcmember) {

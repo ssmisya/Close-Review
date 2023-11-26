@@ -74,6 +74,14 @@ public class Paper {
     public Paper() {
     }
 
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
     public String getConferenceName() {
         return conferenceName;
     }

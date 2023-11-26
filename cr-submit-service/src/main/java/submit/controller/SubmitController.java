@@ -74,5 +74,24 @@ public class SubmitController {
         return service.downloadPaperByPaperId(paper_id,response);
     }
 
+    //修改论文
+    @PutMapping("/paper/update/{paper_id}")
+    Paper updateConference(@RequestBody PaperDto newPaper, @PathVariable String paper_id) {
+
+
+        return repository.findByPaperId(paper_id)
+                .map(paper -> {
+                    paper.setAuthor(newPaper.getAuthor());
+                    paper.setEmail(newPaper.getEmail());
+                    paper.setAbstractInfo(newPaper.getAbstractInfo());
+                    paper.setTopic(newPaper.getTopic());
+                    return repository.save(paper);
+                })
+                .orElseGet(() -> {
+                    Paper paper = new Paper(newPaper);
+                    return repository.save(paper);
+                });
+    }
+
 
 }

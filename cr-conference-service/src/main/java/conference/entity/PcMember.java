@@ -20,4 +20,11 @@ public class PcMember {
 
     @Column(name = "topic", columnDefinition = "varchar(200)")
     private String topic;
+
+    public PcMember(String conferenceId, String userName, String inchargePapers, String topic) {
+        this.conferenceId = conferenceId;
+        this.userName = userName;
+        this.inchargePapers = inchargePapers;
+        this.topic = topic;
+    }
 }
