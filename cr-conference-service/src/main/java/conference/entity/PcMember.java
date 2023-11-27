@@ -9,10 +9,10 @@ public class PcMember {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "conference_id", columnDefinition = "varchar(100)", nullable = false, unique = true)
+    @Column(name = "conference_id", columnDefinition = "varchar(100)", nullable = false)
     private String conferenceId;
 
-    @Column(name = "user_name", columnDefinition = "varchar(100)", nullable = false, unique = true)
+    @Column(name = "user_name", columnDefinition = "varchar(100)", nullable = false)
     private String userName;
 
     @Column(name = "incharge_papers", columnDefinition = "varchar(200)")

@@ -26,7 +26,7 @@ public interface InvatationRepository extends JpaRepository<Invatation,Long> {
     Optional<Invatation> findByConferenceIdAndUserName(String userName,String conferenceId);
 
     @Modifying
-    void deleteById(String id);
+    void deleteById(Long id);
 
     Optional<Invatation> findById(Long Id);
 }

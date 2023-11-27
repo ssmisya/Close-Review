@@ -31,6 +31,7 @@ public class SubmitController {
         return repository.findAll();
     }
 
+    //通过会议ID查找Paper
     @GetMapping("/paper/search/conferenceid/{conference_id}")
     List<Paper> searchByConferenceId(@PathVariable String conference_id) {
         List<Paper> res =  repository.findByConferenceId(conference_id);
@@ -40,6 +41,7 @@ public class SubmitController {
         return res;
     }
 
+    //通过paperid查找paper
     @GetMapping("/paper/search/paperid/{paper_id}")
     Optional<Paper> searchByPaperId(@PathVariable String paper_id) {
         Optional<Paper> res =  repository.findByPaperId(paper_id);

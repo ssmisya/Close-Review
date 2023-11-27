@@ -30,7 +30,7 @@ class LoadDatabase {
     }
 
     @Bean
-    CommandLineRunner initConference(PcMemberRepository repository) {
+    CommandLineRunner initPcmember(PcMemberRepository repository) {
         if(repository.findAll().isEmpty()||repository.findAll().size()<4){
             return args -> {
                 log.info("Preloading " + repository.save(new PcMember("c00002","fd23120240002","","CV")));

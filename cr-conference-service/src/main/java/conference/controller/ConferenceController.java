@@ -174,6 +174,7 @@ public class ConferenceController {
         return invatationRepository.findByUserName(user_name);
     }
 
+    //删除某个邀请
     @DeleteMapping("/conference/pcmember/invite/delete/")
     void deleteInvatationByUserNameAndConferenceId(@RequestParam String user_name,@RequestParam String conference_id){
         invatationRepository.deleteByConferenceIdAndUserName(user_name,conference_id);
