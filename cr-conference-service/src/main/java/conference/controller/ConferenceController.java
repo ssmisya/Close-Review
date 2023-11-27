@@ -1,13 +1,12 @@
 package conference.controller;
 
-import conference.entity.Conference;
-import conference.entity.PcMember;
+import conference.entity.*;
 import conference.exception.ConferenceNotFoundException;
 import conference.repository.ConferenceRepository;
+import conference.repository.InvatationRepository;
 import conference.repository.PcMemberRepository;
 import conference.service.ConferenceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -20,9 +19,12 @@ public class ConferenceController {
     private final ConferenceRepository repository;
     private final PcMemberRepository pcMemberRepository;
 
-    ConferenceController(ConferenceRepository repository, PcMemberRepository pcMemberRepository) {
+    private final InvatationRepository invatationRepository;
+
+    ConferenceController(ConferenceRepository repository, PcMemberRepository pcMemberRepository, InvatationRepository invatationRepository) {
         this.repository = repository;
         this.pcMemberRepository = pcMemberRepository;
+        this.invatationRepository = invatationRepository;
     }
 
     @Autowired
@@ -67,10 +69,21 @@ public class ConferenceController {
         return res;
     }
 
+    //会议审核
+    @PostMapping("/conference/examine/{conference_id}")
+    String examineByConferenceId(@PathVariable String conference_id,@RequestBody String advice) {
+        return conferenceService.examineByConferenceId(conference_id,advice);
+    }
+
+    //开启投稿
+    @PostMapping("/conference/open_submit/{conference_id}")
+    String openByConferenceId(@PathVariable String conference_id,@RequestBody String advice) {
+        return conferenceService.openSubmitByConferenceId(conference_id,advice);
+    }
+
     //修改会议信息
     @PutMapping("/conference/update/{conference_id}")
     Conference updateConference(@RequestBody Conference newConference, @PathVariable String conference_id) {
-
         return repository.findByConferenceId(conference_id)
                 .map(conference -> {
                     conference.setConferenceId(newConference.getConferenceId());
@@ -97,7 +110,7 @@ public class ConferenceController {
     }
 
     //通过用户名搜索用户
-    @GetMapping("/conference/pcmember/invite/{user_name}")
+    @GetMapping("/conference/pcmember/search/{user_name}")
     String searchUserByUserName(@PathVariable String user_name) {
         return conferenceService.searchUser(user_name);
     }
@@ -132,5 +145,37 @@ public class ConferenceController {
         return pcMemberRepository.save(newPcmember);
     }
 
+    // 邀请Pc member
+    @PostMapping("/conference/pcmember/invite/doinvite")
+    String invitePcmemberByConferenceIdAndUserName(@RequestBody InvatationDto dto) {
+        return conferenceService.inviteByConferenceIdAndUserName(dto);
+    }
 
+    // Pc member 接受或拒绝邀请
+    @PostMapping("/conference/pcmember/invite/handle")
+    String handleInvatationByPcmemberByConferenceIdAndUserName(@RequestBody InvatationHandleDto dto) {
+        return conferenceService.handleInvatationByConferenceIdAndUserName(dto.getConferenceId(), dto.getUserName(), dto.getAdvice());
+    }
+
+    //查找全部邀请
+    @GetMapping("/conference/pcmember/invite/all")
+    List<Invatation> findAllInvatation() {
+        return invatationRepository.findAll();
+    }
+    //查找某一会议的邀请
+    @GetMapping("/conference/pcmember/invite/search/conferenceid/{conference_id}")
+    List<Invatation> findInvatationByConferenceId(@PathVariable String conference_id) {
+        return invatationRepository.findByConferenceId(conference_id);
+    }
+
+    //查找某个用户的邀请
+    @GetMapping("/conference/pcmember/invite/search/username/{user_name}")
+    List<Invatation> findInvatationByUserName(@PathVariable String user_name) {
+        return invatationRepository.findByUserName(user_name);
+    }
+
+    @DeleteMapping("/conference/pcmember/invite/delete/")
+    void deleteInvatationByUserNameAndConferenceId(@RequestParam String user_name,@RequestParam String conference_id){
+        invatationRepository.deleteByConferenceIdAndUserName(user_name,conference_id);
+    }
 }

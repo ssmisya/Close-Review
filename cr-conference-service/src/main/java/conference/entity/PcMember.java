@@ -27,4 +27,8 @@ public class PcMember {
         this.inchargePapers = inchargePapers;
         this.topic = topic;
     }
+
+    public PcMember() {
+
+    }
 }
