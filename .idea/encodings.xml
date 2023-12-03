@@ -2,14 +2,18 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/cr-conference-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cr-conference-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-grpc-service/src/generated" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-grpc-service/src/main/generated" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-grpc-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-grpc-service/src/main/java/generated" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cr-grpc-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-grpc-service/target/generated-sources/protobuf/grpc-java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-grpc-service/target/generated-sources/protobuf/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-review-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cr-review-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-submit-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cr-submit-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-test-grpc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-test/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cr-user-service/src/main/java" charset="UTF-8" />
