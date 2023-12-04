@@ -31,4 +31,44 @@ public class PcMember {
     public PcMember() {
 
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getConferenceId() {
+        return conferenceId;
+    }
+
+    public void setConferenceId(String conferenceId) {
+        this.conferenceId = conferenceId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getInchargePapers() {
+        return inchargePapers;
+    }
+
+    public void setInchargePapers(String inchargePapers) {
+        this.inchargePapers = inchargePapers;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 }

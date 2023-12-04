@@ -2,12 +2,6 @@ package conference.entity;
 
 import jakarta.persistence.*;
 
-
-/**
- * User
- *
- * @author star
- */
 @Entity
 @Table(name = "conference")
 public class Conference {

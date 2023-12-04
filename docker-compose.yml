@@ -40,4 +40,5 @@ services:
 networks:
   my-network:
     # driver: overlay
-    driver: bridge
+    driver: host
+#    external: true

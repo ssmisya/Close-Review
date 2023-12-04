@@ -25,10 +25,9 @@ PcMemberRepository extends JpaRepository<PcMember, Long> {
     List<PcMember> findByTopic(String topic);
 
     @Modifying
-    void deleteById(Long Id);
+    void deleteById(Long id);
 
-    @Modifying
-    Optional<PcMember> findById(Long userId);
+    Optional<PcMember> findById(Long id);
 
 
 
