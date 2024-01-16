@@ -10,7 +10,6 @@
         <module name="cr-submit-service" />
         <module name="cr-review-service" />
         <module name="cr-grpc-service" />
-        <module name="demo" />
         <module name="cr-user-service" />
       </profile>
     </annotationProcessing>
@@ -21,6 +20,7 @@
       <module name="cr-test-grpc" target="17" />
       <module name="cr-test-grpc.main" target="17" />
       <module name="cr-test-grpc.test" target="17" />
+      <module name="demo" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
