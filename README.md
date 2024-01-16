@@ -22,13 +22,13 @@ Close Review是一款基于Spring框架开发的论文投稿-审稿-会议管理
 ### 源码运行
 ```bash
 #克隆本仓库的代码
-git clone git@codeup.aliyun.com:6507a61595afb811ce327e57/11.git
-cd 11/
+git clone https://github.com/ssmisya/Close-Review.git
+cd Close-Review
 #安装grpc服务的依赖，从idea处安装也可以，点击右侧Maven图标，找到cr-grpc-service，双击install即可
 sh ./cr-grpc-service/mvnw clean install
 #开启后端(MacOS)
 #这里需要启动四个服务的后端(cr-user-service/cr-conference-service/cr-submit-service/cr-review-service)
-#此处建议从idea启动后端，idea的base为文件夹'11',防止它胡乱创建数据文件
+#此处建议从idea启动后端，idea的base为文件夹'Close-Review',防止它胡乱创建数据文件
 #from 4 bashes
 sh ./cr-user-service/mvnw clean spring-boot:run
 sh ./cr-conference/mvnw clean spring-boot:run
